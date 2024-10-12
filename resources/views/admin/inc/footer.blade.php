@@ -5,9 +5,9 @@
 			<a class="nav-link" href="javascript:void(0)">FAQ</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="#">Purchase Now</a>
+			<a class="nav-link" href="#">School Management</a>
 		  </li>
 		</ul>
     </div>
-	  &copy; 2020 <a href="#">Psd to Html Expert</a>. All Rights Reserved.
+	  &copy; {{ date('Y') }} <a href="#">Zakir BD</a>. All Rights Reserved.
   </footer>
