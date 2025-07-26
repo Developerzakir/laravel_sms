@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\StudentClassController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -60,5 +61,21 @@ Route::prefix('profile')->group(function(){
     });
       
 });
+
+
+Route::prefix('setups')->group(function(){
+
+    Route::controller(StudentClassController::class)->group(function () {         
+        Route::get("/student/class/view", 'classView')->name("student.class.view");
+        Route::get("/student/class/add", 'classAdd')->name("student.class.add");
+        Route::post("/student/class/store", 'classStore')->name("store.student.class");
+        Route::get("/student/class/edit/{id}", 'classEdit')->name("student.class.edit");
+        Route::post("/student/class/update/{id}", 'classUpdate')->name("update.student.class");
+        Route::get("/student/class/delete/{id}", 'classDestroy')->name("student.class.delete");
+       
+    });
+      
+});
+
 
 

@@ -59,27 +59,22 @@
             <li><a href="{{route('password.view')}}"><i class="ti-more"></i>Change Password</a></li>
           </ul>
         </li> 
-		  
-     
-		
-      	  
-		 
-        <li class="header nav-small-cap">User Interface</li>
-		  
-        <li class="treeview">
+
+
+        <li class="treeview {{($prefix == '/setups')? 'active': ''}}">
           <a href="#">
-            <i data-feather="grid"></i>
-            <span>Components</span>
+            <i data-feather="message-circle"></i>
+            <span>Setup Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-         
+            <li><a href="{{route('student.class.view')}}"><i class="ti-more"></i>Student Class</a></li>
+          
           </ul>
-        </li>
+        </li> 
+		  
         
       </ul>
     </section>
