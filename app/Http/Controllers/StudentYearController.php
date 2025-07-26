@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class StudentYearController extends Controller
 {
-        public function yearView()
+    public function yearView()
     {
         $data['allData'] = StudentYear::all();
         return view('admin.student_year.index',$data);
