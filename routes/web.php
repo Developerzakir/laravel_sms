@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentGroupController;
+use App\Http\Controllers\StudentShiftController;
 use App\Http\Controllers\StudentYearController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,14 +68,14 @@ Route::prefix('profile')->group(function(){
 
 Route::prefix('setups')->group(function(){
 
-    Route::controller(StudentClassController::class)->group(function () {         
+     Route::controller(StudentClassController::class)->group(function () {         
         Route::get("/student/class/view", 'classView')->name("student.class.view");
         Route::get("/student/class/add", 'classAdd')->name("student.class.add");
         Route::post("/student/class/store", 'classStore')->name("store.student.class");
         Route::get("/student/class/edit/{id}", 'classEdit')->name("student.class.edit");
         Route::post("/student/class/update/{id}", 'classUpdate')->name("update.student.class");
         Route::get("/student/class/delete/{id}", 'classDestroy')->name("student.class.delete");
-    });
+     });
 
       Route::controller(StudentYearController::class)->group(function () {         
         Route::get("/student/year/view", 'yearView')->name("student.year.view");
@@ -83,7 +84,7 @@ Route::prefix('setups')->group(function(){
         Route::get("/student/year/edit/{id}", 'yearEdit')->name("student.year.edit");
         Route::post("/student/year/update/{id}", 'yearUpdate')->name("update.student.year");
         Route::get("/student/year/delete/{id}", 'yearDestroy')->name("student.year.delete");
-    });
+     });
 
 
        Route::controller(StudentGroupController::class)->group(function () {         
@@ -93,7 +94,16 @@ Route::prefix('setups')->group(function(){
         Route::get("/student/group/edit/{id}", 'groupEdit')->name("student.group.edit");
         Route::post("/student/group/update/{id}", 'groupUpdate')->name("update.student.group");
         Route::get("/student/group/delete/{id}", 'groupDestroy')->name("student.group.delete");
-    });
+      });
+
+       Route::controller(StudentShiftController::class)->group(function () {         
+        Route::get("/student/shift/view", 'shiftView')->name("student.shift.view");
+        Route::get("/student/shift/add", 'shiftAdd')->name("student.shift.add");
+        Route::post("/student/shift/store", 'shiftStore')->name("store.student.shift");
+        Route::get("/student/shift/edit/{id}", 'shiftEdit')->name("student.shift.edit");
+        Route::post("/student/shift/update/{id}", 'shiftUpdate')->name("update.student.shift");
+        Route::get("/student/shift/delete/{id}", 'shiftDestroy')->name("student.shift.delete");
+      });
       
 });
 
