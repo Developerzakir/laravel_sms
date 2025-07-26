@@ -1,3 +1,10 @@
+@php 
+ $prefix = Request::route()->getPrefix();
+ $route = Route::current()->getName();
+@endphp 
+
+
+
 <aside class="main-sidebar">
     <!-- sidebar-->
     <section class="sidebar">	
@@ -8,7 +15,7 @@
 				  <!-- logo for regular state and mobile devices -->
 					 <div class="d-flex align-items-center justify-content-center">					 	
 						  <img src="{{asset('backend/images/logo-dark.png')}}" alt="">
-						  <h3><b>Sunny</b> Dashboard</h3>
+						  <h3>Dashboard</h3>
 					 </div>
 				</a>
 			</div>
@@ -17,14 +24,14 @@
       <!-- sidebar menu-->
       <ul class="sidebar-menu" data-widget="tree">  
 		  
-		<li>
-          <a href="index.html">
+		    <li class="{{($route == 'dashboard')? 'active': ''}}">
+          <a href="{{route('dashboard')}}">
             <i data-feather="pie-chart"></i>
 			<span>Dashboard</span>
           </a>
         </li>  
 		
-        <li class="treeview">
+        <li class="treeview {{($prefix == '/users')? 'active': ''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
             <span>Manage Users</span>
@@ -37,7 +44,9 @@
             <li><a href="{{route('users.add')}}"><i class="ti-more"></i>Add User</a></li>
           </ul>
         </li> 
-        <li class="treeview">
+
+
+        <li class="treeview {{($prefix == '/profile')? 'active': ''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
             <span>Manage User Profile</span>
