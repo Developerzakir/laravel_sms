@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
@@ -103,6 +104,15 @@ Route::prefix('setups')->group(function(){
         Route::get("/student/shift/edit/{id}", 'shiftEdit')->name("student.shift.edit");
         Route::post("/student/shift/update/{id}", 'shiftUpdate')->name("update.student.shift");
         Route::get("/student/shift/delete/{id}", 'shiftDestroy')->name("student.shift.delete");
+      });
+      
+       Route::controller(FeeCategoryController::class)->group(function () {         
+        Route::get("/fee/category/view", 'index')->name("fee.category.view");
+        Route::get("/fee/category/add", 'create')->name("fee.category.add");
+        Route::post("/fee/category/store", 'store')->name("fee.category.store");
+        Route::get("/fee/category/edit/{id}", 'edit')->name("fee.category.edit");
+        Route::post("/fee/category/update/{id}", 'update')->name("fee.category.update");
+        Route::get("/fee/category/delete/{id}", 'destroy')->name("fee.category.delete");
       });
       
 });
