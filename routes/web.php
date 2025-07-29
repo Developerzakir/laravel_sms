@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
+use App\Http\Controllers\SchoolSubjectController;
 use App\Http\Controllers\Backend\ProfileController;
 
 
@@ -134,6 +135,15 @@ Route::prefix('setups')->group(function(){
             Route::get('exam/type/edit/{id}',  'ExamTypeEdit')->name('exam.type.edit');
             Route::post('exam/type/update/{id}',  'ExamTypeUpdate')->name('update.exam.type');
             Route::get('exam/type/delete/{id}',  'ExamTypeDelete')->name('exam.type.delete');
+      });
+
+       Route::controller(SchoolSubjectController::class)->group(function () {         
+            Route::get('school/subject/view','ViewSubject')->name('school.subject.view');
+            Route::get('school/subject/add',  'SubjectAdd')->name('school.subject.add');
+            Route::post('school/subject/store',  'SubjectStore')->name('store.school.subject');
+            Route::get('school/subject/edit/{id}','SubjectEdit')->name('school.subject.edit');
+            Route::post('school/subject/update/{id}',  'SubjectUpdate')->name('update.school.subject');
+            Route::get('school/subject/delete/{id}', 'SubjectDelete')->name('school.subject.delete');
       });
       
 });
