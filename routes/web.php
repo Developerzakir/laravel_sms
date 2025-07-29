@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\FeeAmountController;
 use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentGroupController;
@@ -113,6 +114,16 @@ Route::prefix('setups')->group(function(){
         Route::get("/fee/category/edit/{id}", 'edit')->name("fee.category.edit");
         Route::post("/fee/category/update/{id}", 'update')->name("fee.category.update");
         Route::get("/fee/category/delete/{id}", 'destroy')->name("fee.category.delete");
+      });
+
+       Route::controller(FeeAmountController::class)->group(function () {         
+        Route::get("/fee/amount/view", 'index')->name("fee.amount.view");
+        Route::get("/fee/amount/add", 'create')->name("fee.amount.add");
+        Route::post("/fee/amount/store", 'store')->name("fee.amount.store");
+        Route::get("/fee/amount/edit/{id}", 'edit')->name("fee.amount.edit");
+        Route::post("/fee/amount/update/{id}", 'update')->name("fee.amount.update");
+        Route::get("/fee/amount/delete/{id}", 'destroy')->name("fee.amount.delete");
+        Route::get('fee/amount/details/{id}', 'detailsFeeAmount')->name('fee.amount.details');
       });
       
 });
