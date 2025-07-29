@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
+use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\SchoolSubjectController;
 use App\Http\Controllers\Backend\ProfileController;
 
@@ -144,6 +145,15 @@ Route::prefix('setups')->group(function(){
             Route::get('school/subject/edit/{id}','SubjectEdit')->name('school.subject.edit');
             Route::post('school/subject/update/{id}',  'SubjectUpdate')->name('update.school.subject');
             Route::get('school/subject/delete/{id}', 'SubjectDelete')->name('school.subject.delete');
+      });
+
+       Route::controller(AssignSubjectController::class)->group(function () {         
+           Route::get('assign/subject/view', 'ViewAssignSubject')->name('assign.subject.view');
+           Route::get('assign/subject/add', 'AddAssignSubject')->name('assign.subject.add');
+           Route::post('assign/subject/store',  'StoreAssignSubject')->name('store.assign.subject');
+           Route::get('assign/subject/edit/{class_id}', 'EditAssignSubject')->name('assign.subject.edit');
+           Route::post('assign/subject/update/{class_id}',  'UpdateAssignSubject')->name('update.assign.subject');
+           Route::get('assign/subject/details/{class_id}',  'DetailsAssignSubject')->name('assign.subject.details');
       });
       
 });
