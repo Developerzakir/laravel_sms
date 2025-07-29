@@ -1,15 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Backend\ProfileController;
-use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeAmountController;
 use App\Http\Controllers\FeeCategoryController;
+use App\Http\Controllers\StudentYearController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
-use App\Http\Controllers\StudentYearController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\ProfileController;
 
 
 /*
@@ -122,8 +123,17 @@ Route::prefix('setups')->group(function(){
         Route::post("/fee/amount/store", 'store')->name("fee.amount.store");
         Route::get("/fee/amount/edit/{id}", 'edit')->name("fee.amount.edit");
         Route::post("/fee/amount/update/{id}", 'update')->name("fee.amount.update");
-        Route::get("/fee/amount/delete/{id}", 'destroy')->name("fee.amount.delete");
         Route::get('fee/amount/details/{id}', 'detailsFeeAmount')->name('fee.amount.details');
+      });
+
+
+       Route::controller(ExamTypeController::class)->group(function () {         
+            Route::get('exam/type/view', 'ViewExamType')->name('exam.type.view');
+            Route::get('exam/type/add', 'ExamTypeAdd')->name('exam.type.add');
+            Route::post('exam/type/store',  'ExamTypeStore')->name('store.exam.type');
+            Route::get('exam/type/edit/{id}',  'ExamTypeEdit')->name('exam.type.edit');
+            Route::post('exam/type/update/{id}',  'ExamTypeUpdate')->name('update.exam.type');
+            Route::get('exam/type/delete/{id}',  'ExamTypeDelete')->name('exam.type.delete');
       });
       
 });

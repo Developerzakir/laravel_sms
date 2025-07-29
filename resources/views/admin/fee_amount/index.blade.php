@@ -38,7 +38,6 @@
                               <td>
                                <a href="{{ route('fee.amount.edit',$amount->fee_category_id) }}" class="btn btn-info">Edit</a>
                                 <a href="{{ route('fee.amount.details',$amount->fee_category_id) }}" class="btn btn-info">Details</a>
-                                <a href="" id="delete" class="btn btn-danger btn-sm">Delete</a>
                               </td>
                           </tr>
                           @endforeach
