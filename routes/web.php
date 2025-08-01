@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeAmountController;
+use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\StudentYearController;
 use App\Http\Controllers\Backend\UserController;
@@ -154,6 +155,15 @@ Route::prefix('setups')->group(function(){
            Route::get('assign/subject/edit/{class_id}', 'EditAssignSubject')->name('assign.subject.edit');
            Route::post('assign/subject/update/{class_id}',  'UpdateAssignSubject')->name('update.assign.subject');
            Route::get('assign/subject/details/{class_id}',  'DetailsAssignSubject')->name('assign.subject.details');
+      });
+      
+       Route::controller(DesignationController::class)->group(function () {         
+            Route::get('designation/view','ViewDesignation')->name('designation.view');
+            Route::get('designation/add', 'DesignationAdd')->name('designation.add');
+            Route::post('designation/store', 'DesignationStore')->name('store.designation');
+            Route::get('designation/edit/{id}', 'DesignationEdit')->name('designation.edit');
+            Route::post('designation/update/{id}', 'DesignationUpdate')->name('update.designation');
+            Route::get('designation/delete/{id}', 'DesignationDelete')->name('designation.delete');
       });
       
 });
