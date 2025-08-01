@@ -53,7 +53,7 @@
 					      <select name="class_id"  required="" class="form-control">
 							<option value="" selected="" disabled="">Select Class</option>
 							@foreach($classes as $class)
-							<option value="{{ $class->id }}" {{ (@$class_id == $class->id)? "selected":"" }}>{{ $class->name }}</option>
+							<option value="{{ $class->id }}" {{ ($class_id == $class->id)? "selected":"" }}>{{ $class->name }}</option>
 							@endforeach
 							
 						</select>
@@ -90,8 +90,7 @@
 				<div class="box-body">
 					<div class="table-responsive">
 
-						{{-- @if(!@search)	 --}}
-						@if(!isset($search))				
+						@if(isset($search))				
 						 <table id="example1" class="table table-bordered table-striped">
 											<thead>
 								<tr>
@@ -102,7 +101,7 @@
 									<th>Year</th>
 									<th>Class</th>
 									<th>Image</th>
-									@if(Auth::check() && Auth::user()->role == "Admin")
+									@if(Auth::check() && Auth::user()->role === 'Admin')
 									<th>Code</th>
 									@endif
 									<th width="25%">Action</th>
@@ -140,58 +139,58 @@
 						</tfoot>
 					  </table>
 
-			    @else
+						@else
 
-	                <table id="example1" class="table table-bordered table-striped">
-						<thead>
-									<tr>
-										<th width="5%">SL</th>  
-										<th>Name</th>
-										<th>ID No</th>
-										<th>Roll</th>
-										<th>Year</th>
-										<th>Class</th>
-										<th>Image</th>
-										@if(Auth::user()->role == "Admin")
-										<th>Code</th>
-										@endif
-										<th width="25%">Action</th>
-										
-									</tr>
-								</thead>
-								<tbody>
-									@foreach($allData as $key => $value )
-									<tr>
-										<td>{{ $key+1 }}</td>
-										<td> {{ $value['student']['name'] }}</td>
-										<td> {{ $value['student']['id_no'] }}</td>	
-										<td> {{ $value->roll }}  </td>	
-										<td> {{ $value['student_year']['name'] }}</td>	
-										<td>  {{ $value['student_class']['name'] }}</td>	
-										<td>
-												<img src="{{ (!empty($value['student']['image']))? url('upload/student_images/'.$value['student']['image']):url('upload/no_image.jpg') }}" style="width: 60px; width: 60px;"> 
-															</td>	
-															<td> {{ $value->year_id }}</td>				 
-															<td>
-											<a title="Edit" href="{{ route('student.registration.edit',$value->student_id) }}" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
+											<tr>
+												<th width="5%">SL</th>  
+												<th>Name</th>
+												<th>ID No</th>
+												<th>Roll</th>
+												<th>Year</th>
+												<th>Class</th>
+												<th>Image</th>
+												@if(Auth::check() && Auth::user()->role === 'Admin')
+												<th>Code</th>
+												@endif
+												<th width="25%">Action</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											@foreach($allData as $key => $value )
+											<tr>
+												<td>{{ $key+1 }}</td>
+												<td> {{ $value['student']['name'] }}</td>
+												<td> {{ $value['student']['id_no'] }}</td>	
+												<td> {{ $value->roll }}  </td>	
+												<td> {{ $value['student_year']['name'] }}</td>	
+												<td>  {{ $value['student_class']['name'] }}</td>	
+												<td>
+														<img src="{{ (!empty($value['student']['image']))? url('upload/student_images/'.$value['student']['image']):url('upload/no_image.jpg') }}" style="width: 60px; width: 60px;"> 
+																	</td>	
+																	<td> {{ $value->year_id }}</td>				 
+																	<td>
+													<a title="Edit" href="{{ route('student.registration.edit',$value->student_id) }}" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
 
-											<a title="Promotion" href="{{ route('student.registration.promotion',$value->student_id) }}" class="btn btn-primary" ><i class="fa fa-check"></i></a>
+													<a title="Promotion" href="{{ route('student.registration.promotion',$value->student_id) }}" class="btn btn-primary" ><i class="fa fa-check"></i></a>
 
-											<a target="_blank" title="Details" href="{{ route('student.registration.details',$value->student_id) }}" class="btn btn-danger"  ><i class="fa fa-eye"></i></a>
+													<a target="_blank" title="Details" href="{{ route('student.registration.details',$value->student_id) }}" class="btn btn-danger"  ><i class="fa fa-eye"></i></a>
 
-															</td>
+																	</td>
+																	
+																</tr>
+																@endforeach
 															
-														</tr>
-														@endforeach
-													
-												</tbody>
-												<tfoot>
-							 
-						                </tfoot>
-					  </table>
+														</tbody>
+														<tfoot>
+									
+												</tfoot>
+							</table>
 
 
-			        @endif
+						@endif
 
 
 
