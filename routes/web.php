@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeAmountController;
+use App\Http\Controllers\StudentRegController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\StudentYearController;
@@ -165,7 +166,27 @@ Route::prefix('setups')->group(function(){
             Route::post('designation/update/{id}', 'DesignationUpdate')->name('update.designation');
             Route::get('designation/delete/{id}', 'DesignationDelete')->name('designation.delete');
       });
-      
+});
+
+
+
+/// Student Registration Routes  
+Route::prefix('students')->group(function(){
+
+     Route::controller(StudentRegController::class)->group(function () {  
+            Route::get('/reg/view','StudentRegView')->name('student.registration.view');
+            Route::get('/reg/Add',  'StudentRegAdd')->name('student.registration.add');
+            Route::post('/reg/store',  'StudentRegStore')->name('store.student.registration');
+            Route::get('/year/class/wise',  'StudentClassYearWise')->name('student.year.class.wise');
+            Route::get('/reg/edit/{student_id}', 'StudentRegEdit')->name('student.registration.edit');
+            Route::post('/reg/update/{student_id}',  'StudentRegUpdate')->name('update.student.registration');
+            Route::get('/reg/promotion/{student_id}', 'StudentRegPromotion')->name('student.registration.promotion');
+            Route::post('/reg/update/promotion/{student_id}', 'StudentUpdatePromotion')->name('promotion.student.registration');
+            Route::get('/reg/details/{student_id}', 'StudentRegDetails')->name('student.registration.details');
+    });
+
+
+
 });
 
 
