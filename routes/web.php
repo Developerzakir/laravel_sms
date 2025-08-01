@@ -7,6 +7,7 @@ use App\Http\Controllers\FeeAmountController;
 use App\Http\Controllers\StudentRegController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\FeeCategoryController;
+use App\Http\Controllers\StudentRollController;
 use App\Http\Controllers\StudentYearController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\StudentClassController;
@@ -183,6 +184,12 @@ Route::prefix('students')->group(function(){
             Route::get('/reg/promotion/{student_id}', 'StudentRegPromotion')->name('student.registration.promotion');
             Route::post('/reg/update/promotion/{student_id}', 'StudentUpdatePromotion')->name('promotion.student.registration');
             Route::get('/reg/details/{student_id}', 'StudentRegDetails')->name('student.registration.details');
+    });
+    
+     Route::controller(StudentRollController::class)->group(function () {  
+        Route::get('/roll/generate/view', 'StudentRollView')->name('roll.generate.view');
+        Route::get('/reg/getstudents', 'GetStudents')->name('student.registration.getstudents');
+        Route::post('/roll/generate/store',  'StudentRollStore')->name('roll.generate.store');
     });
 
 
