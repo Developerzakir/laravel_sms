@@ -201,82 +201,85 @@ class StudentRegController extends Controller
     } 
 
 
-    // public function StudentRegPromotion($student_id){
-    // 	$data['years'] = StudentYear::all();
-    // 	$data['classes'] = StudentClass::all();
-    // 	$data['groups'] = StudentGroup::all();
-    // 	$data['shifts'] = StudentShift::all();
+    public function StudentRegPromotion($student_id){
+    	$data['years'] = StudentYear::all();
+    	$data['classes'] = StudentClass::all();
+    	$data['groups'] = StudentGroup::all();
+    	$data['shifts'] = StudentShift::all();
 
-    // 	$data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+    	$data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
     	 
-    // 	return view('admin.student.student_reg.student_promotion',$data);
+    	return view('admin.student.student_reg.student_promotion',$data);
 
-    // }
-
-
+    }
 
 
-//  public function StudentUpdatePromotion(Request $request,$student_id)
-//  {
-//     	DB::transaction(function() use($request,$student_id){
+
+
+ public function StudentUpdatePromotion(Request $request,$student_id)
+ {
+    	DB::transaction(function() use($request,$student_id){
     	 
 
     	 
-//     	$user = User::where('id',$student_id)->first();    	 
-//     	$user->name = $request->name;
-//     	$user->fname = $request->fname;
-//     	$user->mname = $request->mname;
-//     	$user->mobile = $request->mobile;
-//     	$user->address = $request->address;
-//     	$user->gender = $request->gender;
-//     	$user->religion = $request->religion;
-//     	$user->dob = date('Y-m-d',strtotime($request->dob));
+    	$user = User::where('id',$student_id)->first();    	 
+    	$user->name = $request->name;
+    	$user->fname = $request->fname;
+    	$user->mname = $request->mname;
+    	$user->mobile = $request->mobile;
+    	$user->address = $request->address;
+    	$user->gender = $request->gender;
+    	$user->religion = $request->religion;
+    	$user->dob = date('Y-m-d',strtotime($request->dob));
 
-//     	if ($request->file('image')) {
-//     		$file = $request->file('image');
-//     		@unlink(public_path('upload/student_images/'.$user->image));
-//     		$filename = date('YmdHi').$file->getClientOriginalName();
-//     		$file->move(public_path('upload/student_images'),$filename);
-//     		$user['image'] = $filename;
-//     	}
-//  	    $user->save();
+    	if ($request->file('image')) {
+    		$file = $request->file('image');
+    		@unlink(public_path('upload/student_images/'.$user->image));
+    		$filename = date('YmdHi').$file->getClientOriginalName();
+    		$file->move(public_path('upload/student_images'),$filename);
+    		$user['image'] = $filename;
+    	}
+ 	    $user->save();
 
-//           $assign_student = new AssignStudent();
+          $assign_student = new AssignStudent();
           
-//           $assign_student->student_id = $student_id;
-//           $assign_student->year_id = $request->year_id;
-//           $assign_student->class_id = $request->class_id;
-//           $assign_student->group_id = $request->group_id;
-//           $assign_student->shift_id = $request->shift_id;
-//           $assign_student->save();
+          $assign_student->student_id = $student_id;
+          $assign_student->year_id = $request->year_id;
+          $assign_student->class_id = $request->class_id;
+          $assign_student->group_id = $request->group_id;
+          $assign_student->shift_id = $request->shift_id;
+          $assign_student->save();
 
-//           $discount_student = new DiscountStudent();
+          $discount_student = new DiscountStudent();
 
-//           $discount_student->assign_student_id = $assign_student->id;
-//           $discount_student->fee_category_id = '1';
-//           $discount_student->discount = $request->discount;
-//           $discount_student->save();
+          $discount_student->assign_student_id = $assign_student->id;
+          $discount_student->fee_category_id = '1';
+          $discount_student->discount = $request->discount;
+          $discount_student->save();
 
-//     	});
-
-
-//     	$notification = array(
-//     		'message' => 'Student Promotion Updated Successfully',
-//     		'alert-type' => 'success'
-//     	);
-
-//     	return redirect()->route('student.registration.view')->with($notification);
-
-//     } 
+    	});
 
 
+    	$notification = array(
+    		'message' => 'Student Promotion Updated Successfully',
+    		'alert-type' => 'success'
+    	);
 
-    // public function StudentRegDetails($student_id){
-    //  $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+    	return redirect()->route('student.registration.view')->with($notification);
 
-    // $pdf = PDF::loadView('backend.student.student_reg.student_details_pdf', $data);
-	// $pdf->SetProtection(['copy', 'print'], '', 'pass');
-	// return $pdf->stream('document.pdf');
+    } 
 
-    // }
+
+
+    public function StudentRegDetails($student_id)
+    {
+        $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+
+        $pdf = PDF::loadView('admin.student.student_reg.student_details_pdf', $data);
+        $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        return $pdf->stream('document.pdf');
+
+    }
+
+
 }
