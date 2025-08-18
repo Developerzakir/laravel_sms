@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\MarksController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ExamFeeController;
@@ -285,12 +286,20 @@ Route::prefix('employees')->group(function(){
 
     // mark entry All Routes 
     Route::controller(MarksController::class)->group(function () {   
-      
         Route::get('marks/entry/add','MarksAdd')->name('marks.entry.add');
         Route::post('marks/entry/store','MarksStore')->name('marks.entry.store'); 
         Route::get('marks/entry/edit', 'MarksEdit')->name('marks.entry.edit'); 
         Route::get('marks/getstudents/edit',  'MarksEditGetStudents')->name('student.edit.getstudents');
         Route::post('marks/entry/update', 'MarksUpdate')->name('marks.entry.update');  
+    });
+
+    // mark entry All Routes 
+    Route::controller(GradeController::class)->group(function () {   
+       Route::get('marks/grade/view', 'MarksGradeView')->name('marks.entry.grade');
+       Route::get('marks/grade/add', 'MarksGradeAdd')->name('marks.grade.add');
+       Route::post('marks/grade/store', 'MarksGradeStore')->name('store.marks.grade');
+       Route::get('marks/grade/edit/{id}','MarksGradeEdit')->name('marks.grade.edit');
+       Route::post('marks/grade/update/{id}', 'MarksGradeUpdate')->name('update.marks.grade');
     });
 
 });
