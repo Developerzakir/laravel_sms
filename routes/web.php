@@ -18,6 +18,7 @@ use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
 use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\SchoolSubjectController;
+use App\Http\Controllers\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\RegistrationFeeController;
 
@@ -234,6 +235,17 @@ Route::prefix('employees')->group(function(){
         Route::post('reg/employee/update/{id}',  'EmployeeUpdate')->name('update.employee.registration');
         Route::get('reg/employee/details/{id}',  'EmployeeDetails')->name('employee.registration.details'); 
     });
+
+
+     // Employee Salary All Routes 
+    Route::controller(EmployeeSalaryController::class)->group(function () {   
+        Route::get('salary/employee/view', 'SalaryView')->name('employee.sallary.view');
+        Route::get('salary/employee/increment/{id}',  'SalaryIncrement')->name('employee.salary.increment');
+        Route::post('salary/employee/store/{id}', 'SalaryStore')->name('update.increment.store');
+        Route::get('salary/employee/details/{id}', 'SalaryDetails')->name('employee.salary.details');
+    });
+
+
 
 });
 

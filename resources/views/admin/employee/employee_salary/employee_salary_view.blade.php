@@ -1,5 +1,5 @@
 @extends('admin.admin_master')
-@section('admin')
+@section('backend')
 
 
  <div class="content-wrapper">
