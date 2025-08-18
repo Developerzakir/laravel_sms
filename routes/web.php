@@ -9,6 +9,7 @@ use App\Http\Controllers\ExamFeeController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeAmountController;
 use App\Http\Controllers\MonthlyFeeController;
+use App\Http\Controllers\StudentFeeController;
 use App\Http\Controllers\StudentRegController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeRegController;
@@ -307,6 +308,18 @@ Route::prefix('employees')->group(function(){
 Route::get('marks/getsubject', [DefaultController::class, 'GetSubject'])->name('marks.getsubject');
 
 Route::get('student/marks/getstudents', [DefaultController::class, 'GetStudents'])->name('student.marks.getstudents');
+
+
+/// Marks Management Routes  
+Route::prefix('accounts')->group(function(){
+      // student fee 
+    Route::controller(StudentFeeController::class)->group(function () {   
+     Route::get('student/fee/view', 'StudentFeeView')->name('student.fee.view');
+     Route::get('student/fee/add', 'StudentFeeAdd')->name('student.fee.add');
+     Route::get('student/fee/getstudent', 'StudentFeeGetStudent')->name('account.fee.getstudent'); 
+     Route::post('student/fee/store', 'StudentFeeStore')->name('account.fee.store'); 
+    });
+});
 
 
 
