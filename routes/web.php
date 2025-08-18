@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MarksController;
+use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ExamFeeController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeAmountController;
@@ -275,9 +277,27 @@ Route::prefix('employees')->group(function(){
         Route::get('monthly/salary/payslip/{employee_id}','MonthlySalaryPayslip')->name('employee.monthly.salary.payslip');
     });
 
+});
 
+
+/// Marks Management Routes  
+Route::prefix('employees')->group(function(){
+
+    // mark entry All Routes 
+    Route::controller(MarksController::class)->group(function () {   
+      
+        Route::get('marks/entry/add','MarksAdd')->name('marks.entry.add');
+        Route::post('marks/entry/store','MarksStore')->name('marks.entry.store'); 
+        Route::get('marks/entry/edit', 'MarksEdit')->name('marks.entry.edit'); 
+        Route::get('marks/getstudents/edit',  'MarksEditGetStudents')->name('student.edit.getstudents');
+        Route::post('marks/entry/update', 'MarksUpdate')->name('marks.entry.update');  
+    });
 
 });
+
+Route::get('marks/getsubject', [DefaultController::class, 'GetSubject'])->name('marks.getsubject');
+
+Route::get('student/marks/getstudents', [DefaultController::class, 'GetStudents'])->name('student.marks.getstudents');
 
 
 
