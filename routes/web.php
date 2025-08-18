@@ -17,6 +17,7 @@ use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
 use App\Http\Controllers\AssignSubjectController;
+use App\Http\Controllers\EmployeeLeaveController;
 use App\Http\Controllers\SchoolSubjectController;
 use App\Http\Controllers\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -237,12 +238,22 @@ Route::prefix('employees')->group(function(){
     });
 
 
-     // Employee Salary All Routes 
+    // Employee Salary All Routes 
     Route::controller(EmployeeSalaryController::class)->group(function () {   
         Route::get('salary/employee/view', 'SalaryView')->name('employee.sallary.view');
         Route::get('salary/employee/increment/{id}',  'SalaryIncrement')->name('employee.salary.increment');
         Route::post('salary/employee/store/{id}', 'SalaryStore')->name('update.increment.store');
         Route::get('salary/employee/details/{id}', 'SalaryDetails')->name('employee.salary.details');
+    });
+
+     // Employee Leave All Routes 
+    Route::controller(EmployeeLeaveController::class)->group(function () {   
+        Route::get('leave/employee/view', 'LeaveView')->name('employee.leave.view');
+        Route::get('leave/employee/add', 'LeaveAdd')->name('employee.leave.add');
+        Route::post('leave/employee/store', 'LeaveStore')->name('store.employee.leave');
+        Route::get('leave/employee/edit/{id}', 'LeaveEdit')->name('employee.leave.edit');
+        Route::post('leave/employee/update/{id}','LeaveUpdate')->name('update.employee.leave');
+        Route::get('leave/employee/delete/{id}', 'LeaveDelete')->name('employee.leave.delete');
     });
 
 
