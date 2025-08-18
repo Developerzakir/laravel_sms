@@ -22,6 +22,7 @@ use App\Http\Controllers\SchoolSubjectController;
 use App\Http\Controllers\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\RegistrationFeeController;
+use App\Http\Controllers\EmployeeAttendanceController;
 
 
 /*
@@ -254,6 +255,15 @@ Route::prefix('employees')->group(function(){
         Route::get('leave/employee/edit/{id}', 'LeaveEdit')->name('employee.leave.edit');
         Route::post('leave/employee/update/{id}','LeaveUpdate')->name('update.employee.leave');
         Route::get('leave/employee/delete/{id}', 'LeaveDelete')->name('employee.leave.delete');
+    });
+
+     // Employee Attendence All Routes 
+    Route::controller(EmployeeAttendanceController::class)->group(function () {   
+        Route::get('attendance/employee/view', 'AttendanceView')->name('employee.attendance.view');
+        Route::get('attendance/employee/add', 'AttendanceAdd')->name('employee.attendance.add');
+        Route::post('attendance/employee/store', 'AttendanceStore')->name('store.employee.attendance');
+        Route::get('attendance/employee/edit/{date}', 'AttendanceEdit')->name('employee.attendance.edit');
+        Route::get('attendance/employee/details/{date}', 'AttendanceDetails')->name('employee.attendance.details');
     });
 
 

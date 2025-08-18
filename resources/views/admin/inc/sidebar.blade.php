@@ -115,6 +115,7 @@
             <li><a href="{{route('employee.registration.view')}}"><i class="ti-more"></i>Employee Registration</a></li>
             <li><a href="{{route('employee.sallary.view')}}"><i class="ti-more"></i>Employee Sallary View</a></li>
             <li><a href="{{route('employee.leave.view')}}"><i class="ti-more"></i>Employee Leave View</a></li>
+            <li><a href="{{route('employee.attendance.view')}}"><i class="ti-more"></i>Employee Attendence</a></li>
           </ul>
         </li> 
 		  
