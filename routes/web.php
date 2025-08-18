@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeAmountController;
+use App\Http\Controllers\MonthlyFeeController;
 use App\Http\Controllers\StudentRegController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\FeeCategoryController;
@@ -175,6 +176,7 @@ Route::prefix('setups')->group(function(){
 /// Student Registration Routes  
 Route::prefix('students')->group(function(){
 
+    //Student Registration  routes
      Route::controller(StudentRegController::class)->group(function () {  
             Route::get('/reg/view','StudentRegView')->name('student.registration.view');
             Route::get('/reg/Add',  'StudentRegAdd')->name('student.registration.add');
@@ -187,16 +189,26 @@ Route::prefix('students')->group(function(){
             Route::get('/reg/details/{student_id}', 'StudentRegDetails')->name('student.registration.details');
     });
     
+    //Student role generate routes
      Route::controller(StudentRollController::class)->group(function () {  
         Route::get('/roll/generate/view', 'StudentRollView')->name('roll.generate.view');
         Route::get('/reg/getstudents', 'GetStudents')->name('student.registration.getstudents');
         Route::post('/roll/generate/store',  'StudentRollStore')->name('roll.generate.store');
     });
 
+
+    //Student Registration fee routes
      Route::controller(RegistrationFeeController::class)->group(function () {  
          Route::get('/reg/fee/view', 'RegFeeView')->name('registration.fee.view');
          Route::get('/reg/fee/classwisedata',  'RegFeeClassData')->name('student.registration.fee.classwise.get');
          Route::get('/reg/fee/payslip', 'RegFeePayslip')->name('student.registration.fee.payslip');
+    });
+
+    //Student Registration fee routes
+     Route::controller(MonthlyFeeController::class)->group(function () {  
+        Route::get('/monthly/fee/view', 'MonthlyFeeView')->name('monthly.fee.view');
+        Route::get('/monthly/fee/classwisedata', 'MonthlyFeeClassData')->name('student.monthly.fee.classwise.get');
+        Route::get('/monthly/fee/payslip', 'MonthlyFeePayslip')->name('student.monthly.fee.payslip');
     });
 
 
