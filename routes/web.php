@@ -8,6 +8,7 @@ use App\Http\Controllers\FeeAmountController;
 use App\Http\Controllers\MonthlyFeeController;
 use App\Http\Controllers\StudentRegController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\EmployeeRegController;
 use App\Http\Controllers\FeeCategoryController;
 use App\Http\Controllers\StudentRollController;
 use App\Http\Controllers\StudentYearController;
@@ -211,15 +212,28 @@ Route::prefix('students')->group(function(){
         Route::get('/monthly/fee/classwisedata', 'MonthlyFeeClassData')->name('student.monthly.fee.classwise.get');
         Route::get('/monthly/fee/payslip', 'MonthlyFeePayslip')->name('student.monthly.fee.payslip');
     });
-    
+
     //Student Exam fee routes
      Route::controller(ExamFeeController::class)->group(function () {  
         Route::get('/exam/fee/view', 'ExamFeeView')->name('exam.fee.view');
         Route::get('/exam/fee/classwisedata', 'ExamFeeClassData')->name('student.exam.fee.classwise.get');
         Route::get('/exam/fee/payslip', 'ExamFeePayslip')->name('student.exam.fee.payslip');
     });
+});
 
 
+
+/// Employee Registration Routes
+Route::prefix('employees')->group(function(){
+
+    Route::controller(EmployeeRegController::class)->group(function () { 
+        Route::get('reg/employee/view', 'EmployeeView')->name('employee.registration.view');
+        Route::get('reg/employee/add', 'EmployeeAdd')->name('employee.registration.add');
+        Route::post('reg/employee/store',  'EmployeeStore')->name('store.employee.registration');
+        Route::get('reg/employee/edit/{id}',  'EmployeeEdit')->name('employee.registration.edit');
+        Route::post('reg/employee/update/{id}',  'EmployeeUpdate')->name('update.employee.registration');
+        Route::get('reg/employee/details/{id}',  'EmployeeDetails')->name('employee.registration.details'); 
+    });
 
 });
 
