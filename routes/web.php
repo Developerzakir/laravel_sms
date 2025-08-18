@@ -18,6 +18,7 @@ use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
 use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\EmployeeLeaveController;
+use App\Http\Controllers\MonthlySalaryController;
 use App\Http\Controllers\SchoolSubjectController;
 use App\Http\Controllers\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -264,6 +265,14 @@ Route::prefix('employees')->group(function(){
         Route::post('attendance/employee/store', 'AttendanceStore')->name('store.employee.attendance');
         Route::get('attendance/employee/edit/{date}', 'AttendanceEdit')->name('employee.attendance.edit');
         Route::get('attendance/employee/details/{date}', 'AttendanceDetails')->name('employee.attendance.details');
+    });
+
+
+     // Employee Attendence All Routes 
+    Route::controller(MonthlySalaryController::class)->group(function () {   
+        Route::get('monthly/salary/view','MonthlySalaryView')->name('employee.monthly.salary');
+        Route::get('monthly/salary/get', 'MonthlySalaryGet')->name('employee.monthly.salary.get');
+        Route::get('monthly/salary/payslip/{employee_id}','MonthlySalaryPayslip')->name('employee.monthly.salary.payslip');
     });
 
 
