@@ -154,6 +154,21 @@
 
             </ul>
         </li> 
+
+              <li class="header nav-small-cap">Report Interface</li>
+		  
+       <li class="treeview {{ ($prefix == '/reports')?'active':'' }}">
+            <a href="#">
+              <i data-feather="server"></i></i> <span> Reports Management</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+            <li class="{{ ($route == 'monthly.profit.view')?'active':'' }}"><a href="{{ route('monthly.profit.view') }}"><i class="ti-more"></i>Monthly-Yearly Profite</a></li> 
+
+          </ul>
+        </li>
 		  
         
       </ul>
