@@ -8,6 +8,7 @@ use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ExamFeeController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeAmountController;
+use App\Http\Controllers\OtherCostController;
 use App\Http\Controllers\MonthlyFeeController;
 use App\Http\Controllers\StudentFeeController;
 use App\Http\Controllers\StudentRegController;
@@ -328,6 +329,17 @@ Route::prefix('accounts')->group(function(){
        Route::get('account/salary/getemployee', 'AccountSalaryGetEmployee')->name('account.salary.getemployee');
        Route::post('account/salary/store','AccountSalaryStore')->name('account.salary.store');
     });
+
+    //others cost route
+    Route::controller(OtherCostController::class)->group(function () {     
+        Route::get('other/cost/view', 'OtherCostView')->name('other.cost.view');
+        Route::get('other/cost/add', 'OtherCostAdd')->name('other.cost.add');
+        Route::post('other/cost/store', 'OtherCostStore')->name('store.other.cost');
+        Route::get('other/cost/edit/{id}', 'OtherCostEdit')->name('edit.other.cost');
+        Route::post('other/cost/update/{id}', 'OtherCostUpdate')->name('update.other.cost');
+    });
+
+
 });
 
 
