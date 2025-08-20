@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\StudentShiftController;
+use App\Http\Controllers\AccountSalaryController;
 use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\EmployeeLeaveController;
 use App\Http\Controllers\MonthlySalaryController;
@@ -318,6 +319,14 @@ Route::prefix('accounts')->group(function(){
      Route::get('student/fee/add', 'StudentFeeAdd')->name('student.fee.add');
      Route::get('student/fee/getstudent', 'StudentFeeGetStudent')->name('account.fee.getstudent'); 
      Route::post('student/fee/store', 'StudentFeeStore')->name('account.fee.store'); 
+    });
+
+    //employee salary route
+    Route::controller(AccountSalaryController::class)->group(function () {   
+       Route::get('account/salary/view', 'AccountSalaryView')->name('account.salary.view');
+       Route::get('account/salary/add', 'AccountSalaryAdd')->name('account.salary.add');
+       Route::get('account/salary/getemployee', 'AccountSalaryGetEmployee')->name('account.salary.getemployee');
+       Route::post('account/salary/store','AccountSalaryStore')->name('account.salary.store');
     });
 });
 
