@@ -14,6 +14,7 @@ use App\Http\Controllers\OtherCostController;
 use App\Http\Controllers\MonthlyFeeController;
 use App\Http\Controllers\StudentFeeController;
 use App\Http\Controllers\StudentRegController;
+use App\Http\Controllers\AttenReportController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeRegController;
 use App\Http\Controllers\FeeCategoryController;
@@ -356,6 +357,11 @@ Route::prefix('reports')->group(function(){
       // MarkSheet Generate Routes 
         Route::get('marksheet/generate/view', [MarkSheetController::class, 'MarkSheetView'])->name('marksheet.generate.view');
         Route::get('marksheet/generate/get', [MarkSheetController::class, 'MarkSheetGet'])->name('report.marksheet.get');
+
+    // Attendance Report Routes 
+    Route::get('attendance/report/view', [AttenReportController::class, 'AttenReportView'])->name('attendance.report.view');
+
+    Route::get('report/attendance/get', [AttenReportController::class, 'AttenReportGet'])->name('report.attendance.get');
 
 });
 
