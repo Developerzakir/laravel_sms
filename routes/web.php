@@ -9,6 +9,7 @@ use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\ExamFeeController;
 use App\Http\Controllers\ExamTypeController;
 use App\Http\Controllers\FeeAmountController;
+use App\Http\Controllers\MarkSheetController;
 use App\Http\Controllers\OtherCostController;
 use App\Http\Controllers\MonthlyFeeController;
 use App\Http\Controllers\StudentFeeController;
@@ -350,8 +351,12 @@ Route::prefix('reports')->group(function(){
        Route::get('monthly/profit/view', 'MonthlyProfitView')->name('monthly.profit.view');
        Route::get('monthly/profit/datewais', 'MonthlyProfitDatewais')->name('report.profit.datewais.get');
        Route::get('monthly/profit/pdf', 'MonthlyProfitPdf')->name('report.profit.pdf');
-    });
-    
+      });
+
+      // MarkSheet Generate Routes 
+        Route::get('marksheet/generate/view', [MarkSheetController::class, 'MarkSheetView'])->name('marksheet.generate.view');
+        Route::get('marksheet/generate/get', [MarkSheetController::class, 'MarkSheetGet'])->name('report.marksheet.get');
+
 });
 
 

@@ -1,5 +1,5 @@
 @extends('admin.admin_master')
-@section('admin')
+@section('backend')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
  <div class="content-wrapper">
@@ -209,7 +209,7 @@ $grade_point_avg = (float)$total_point/(float)$total_subject;
     @if($count_fail > 0)
     F
     @else
-    {{ $total_grade->grade_name }}
+    {{ $total_grade->grade_name ?? 'N/A' }}
     @endif
   </td>
 </tr>
@@ -235,7 +235,7 @@ $grade_point_avg = (float)$total_point/(float)$total_subject;
         @if($count_fail > 0)
         Fail
         @else
-        {{ $total_grade->remarks }}
+        {{ $total_grade->remarks  ?? 'N/A'}}
         @endif
       </td>
     </tr>
