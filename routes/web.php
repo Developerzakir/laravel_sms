@@ -47,6 +47,10 @@ use App\Http\Controllers\EmployeeAttendanceController;
 |
 */
 
+
+Route::group(['middleware' => ['auth','prevent-back-history']],function(){
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -370,6 +374,8 @@ Route::prefix('reports')->group(function(){
         // Student ID Card Routes 
         Route::get('student/idcard/view', [ResultReportController::class, 'IdcardView'])->name('student.idcard.view');
         Route::get('student/idcard/get', [ResultReportController::class, 'IdcardGet'])->name('report.student.idcard.get');
+
+});
 
 });
 
